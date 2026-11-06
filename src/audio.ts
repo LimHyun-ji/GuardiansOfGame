@@ -41,5 +41,9 @@ export function sfx(name: string) {
     case 'caught': tone(140, 0.35, 'sawtooth', 0.07, -40); break;
     case 'disguise': tone(400, 0.05, 'triangle', 0.06, 200); break;
     case 'jump': tone(330, 0.08, 'square', 0.03, 220); break;
+    case 'nearmiss': tone(1047, 0.06); tone(1319, 0.06, 'square', 0.05, 0, 0.06); tone(1568, 0.06, 'square', 0.05, 0, 0.12); tone(2093, 0.16, 'square', 0.05, 0, 0.18); break;
+    case 'combo': tone(784, 0.05, 'square', 0.05); tone(1175, 0.1, 'square', 0.05, 0, 0.05); break;
+    case 'glitch': for (let i = 0; i < 6; i++) tone(100 + Math.random() * 900, 0.04, 'sawtooth', 0.05, 0, i * 0.04); break;
+    case 'throw': tone(500, 0.08, 'triangle', 0.06, 300); break;
   }
 }

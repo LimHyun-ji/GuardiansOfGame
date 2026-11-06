@@ -50,7 +50,7 @@ export interface Pit {
 
 export interface Door {
   x: number;
-  scripted: boolean; // 대본에 적힌 적 출현 지점
+  scripted: boolean; // 대본에 적힌 적 출현 지점 (문은 2층 = 카메라 층에 있다)
   used: boolean;
   tasked: boolean;
 }
@@ -62,6 +62,15 @@ export interface Branch {
   detour: boolean;
   entered: boolean;
   block?: Block;
+}
+
+export type PropKind = 'bush' | 'cloud' | 'brick' | 'plant';
+
+/** 위장 소품 자리: 여기서 위장하면 완벽, 아무 데서나 하면 '어색한 상자' */
+export interface PropSpot {
+  x: number;
+  floor: 'upper' | 'lower';
+  kind: PropKind;
 }
 
 export interface Crate {
@@ -77,6 +86,7 @@ export interface Level {
   branches: Branch[];
   ladders: number[];
   crates: Crate[];
+  props: PropSpot[];
 }
 
 export function buildLevel(): Level {
@@ -139,5 +149,12 @@ export function buildLevel(): Level {
     crates.push({ x, kind: 'coin' }, { x: x + 26, kind: '1up' });
   }
 
-  return { goalX: STAGE_GOAL_X, pits, blocks, doors, branches, ladders, crates };
+  const props: PropSpot[] = [];
+  const kinds: PropKind[] = ['bush', 'cloud', 'brick'];
+  for (let x = 60; x < STAGE_GOAL_X + 640; x += 76) {
+    props.push({ x, floor: 'upper', kind: kinds[Math.floor(x / 456) % 3] });
+  }
+  for (let x = 170; x < STAGE_GOAL_X + 640; x += 240) props.push({ x, floor: 'lower', kind: 'plant' });
+
+  return { goalX: STAGE_GOAL_X, pits, blocks, doors, branches, ladders, crates, props };
 }
