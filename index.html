@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0d0908">
+<title>백스테이지 크루</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap">
+</head>
+<body>
+<div id="app">
+  <canvas id="game" width="640" height="360"></canvas>
+
+  <div id="controls" hidden>
+    <div id="stick" class="ctrl"><div id="knob"></div></div>
+    <div id="b-jump" class="ctrl btn">점프</div>
+    <div id="b-pick" class="ctrl btn">집기</div>
+    <div id="b-work" class="ctrl btn"><span>작업<small>꾹</small></span></div>
+    <div id="b-disguise" class="ctrl btn">위장</div>
+    <button id="b-mute" type="button" aria-label="소리 끄기">♪</button>
+  </div>
+
+  <div id="title" class="overlay">
+    <div class="card">
+      <div class="eyebrow">횡스크롤부 · 입사 첫날</div>
+      <h1>백스테이지 크루</h1>
+      <p class="lead">화면 위쪽은 플레이어가 보는 게임, 아래쪽은 당신이 뛰어다니는 무대 뒤입니다. 플레이어가 눈치채지 못하게 블록을 채우고, 적 배우를 출근시키고, 무너질 발판을 고치세요.</p>
+      <div class="how">
+        <div><b>업무 카드</b>위쪽 카드의 초가 0이 되기 전에 처리</div>
+        <div><b>1층 창고 → 2층 슬롯</b>[집기]로 동전을 들고 블록 아래 슬롯에 넣기</div>
+        <div><b>점선 프레임 = 카메라</b>2층에서 찍히면 의심이 쌓임. [위장]으로 덤불 흉내</div>
+      </div>
+      <button id="start" class="go" type="button">출근하기</button>
+      <div class="keys">키보드: 방향키 이동 · Space 점프 · J 집기 · K 작업(꾹) · L 위장</div>
+    </div>
+  </div>
+
+  <div id="result" class="overlay" hidden>
+    <div class="card">
+      <div id="r-eyebrow" class="eyebrow">정산</div>
+      <h2 id="r-title">스테이지 클리어</h2>
+      <div id="r-grade" class="grade">A</div>
+      <p id="r-reason" class="lead"></p>
+      <div id="r-stats" class="stats"></div>
+      <button id="again" class="go" type="button">다시 출근</button>
+    </div>
+  </div>
+
+  <div id="rotate" class="overlay">
+    <div class="card">
+      <div class="phone" aria-hidden="true"></div>
+      <h2>가로로 돌려 주세요</h2>
+      <p class="lead">무대는 가로 화면에서만 열립니다.</p>
+    </div>
+  </div>
+</div>
+<script type="module" src="/src/main.ts"></script>
+</body>
+</html>
